@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  solid_client:
+    container_name: solid_client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "4000:4000"
+    networks:
+      - solid
+
+  solid_server:
+    container_name: solid_server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - solid
+
+networks:
+  solid:
+    external: false
